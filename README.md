@@ -1,6 +1,8 @@
 # Laravel Paysera
 Package that helps to use Paysera API in laravel application.
 
+A fork of adumskis/laravel-paysera
+
 ### Installation
 First require package with composer:
 ```sh
