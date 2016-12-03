@@ -1,6 +1,6 @@
 {
-    "name": "artme/laravel-paysera",
-    "description": "Paysera module for Laravel 5.1",
+    "name": "alperhasan/laravel-paysera",
+    "description": "Fork of adumskis/laravel-paysera - Paysera module for Laravel 5.1",
     "authors": [
         {
             "name": "Algirdas Dumskis",
