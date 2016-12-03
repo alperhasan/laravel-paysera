@@ -27,7 +27,7 @@ class Paysera
     {
         $payment_methods_info = WebToPay::getPaymentMethodList(intval($paysera_site_config->projectid), $paysera_site_config->currency);
         $country_code = $paysera_site_config->country;
-        $payment_methods_info->setDefaultLanguage($paysera_site_config->locale);
+        $payment_methods_info->setDefaultLanguage($paysera_site_config->language);
 
         $result = [];
 
@@ -40,10 +40,10 @@ class Paysera
 
         foreach ($payment_groups_names as $payment_groups_name) {
             $payment_methods_groups[$payment_groups_name] = $payment_methods_groups_all[$payment_groups_name];
-            $result['payment_groups'][$payment_groups_name]['title'] = $payment_methods_groups_all[$payment_groups_name]->getTitle($paysera_site_config->locale);
+            $result['payment_groups'][$payment_groups_name]['title'] = $payment_methods_groups_all[$payment_groups_name]->getTitle($paysera_site_config->language);
             foreach ($payment_methods_groups_all[$payment_groups_name]->getPaymentMethods() as $key => $method) {
                 $tmp = [];
-                $tmp['title'] = $method->getTitle($paysera_site_config->locale);
+                $tmp['title'] = $method->getTitle($paysera_site_config->language);
                 $tmp['key'] = $key;
                 $tmp['currency'] = $method->getBaseCurrency();
                 $tmp['logo_url'] = $method->getLogoUrl();
