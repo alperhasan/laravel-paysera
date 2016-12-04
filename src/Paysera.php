@@ -2,11 +2,13 @@
 
 namespace Artme\Paysera;
 
-use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\URL;
 use WebToPay;
+use Request;
+
 
 class Paysera
 {
