@@ -132,7 +132,7 @@ class Paysera
 */
     public static function getCancelUrl($paysera_site_config, $order_id)
     {
-        $parsed_url = parse_url($paysera_site_config->cancel_url);
+        $parsed_url = parse_url(Request::root() . $paysera_site_config->cancel_path);
         if (isset($parsed_url['query'])) {
             $query = parse_str($parsed_url['query']);
         } else {
@@ -145,7 +145,7 @@ class Paysera
     }
     public static function getAcceptUrl($paysera_site_config)
     {
-        $parsed_url = parse_url($paysera_site_config->cancel_url);
+        $parsed_url = parse_url(Request::root() . $paysera_site_config->cancel_path);
         if (isset($parsed_url['query'])) {
             $query = parse_str($parsed_url['query']);
         } else {
@@ -159,7 +159,7 @@ class Paysera
 
     public static function getCallbackUrl($paysera_site_config)
     {
-        $parsed_url = parse_url($paysera_site_config->cancel_url);
+        $parsed_url = parse_url(Request::root() . $paysera_site_config->cancel_path);
         if (isset($parsed_url['query'])) {
             $query = parse_str($parsed_url['query']);
         } else {
