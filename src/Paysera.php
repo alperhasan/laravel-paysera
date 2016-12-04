@@ -81,7 +81,7 @@ class Paysera
         ];
 
         $payment_data['callbackurl'] = self::getCallbackUrl($paysera_site_config);
-        $payment_data['accepturl'] = self::getAcceptUrl($paysera_site_config);
+        $payment_data['accepturl'] = self::getAcceptUrl($paysera_site_config, $order_id);
         $payment_data['cancelurl'] = self::getCancelUrl($paysera_site_config, $order_id);
 
         $payment_data = array_merge($payment_data, $options);
@@ -105,7 +105,6 @@ class Paysera
         );
 
         return $response;
-
     }
 
 /*
@@ -143,7 +142,8 @@ class Paysera
 
         return self::unparseUrl($parsed_url);
     }
-    public static function getAcceptUrl($paysera_site_config)
+
+    public static function getAcceptUrl($paysera_site_config, $order_id)
     {
         $parsed_url = parse_url(Request::root() . $paysera_site_config->accept_path . '/' . $paysera_site_config->site_id);
         if (isset($parsed_url['query'])) {
@@ -151,7 +151,7 @@ class Paysera
         } else {
             $query = [];
         }
-        $query['site_id'] = $paysera_site_config->site_id;
+        $query['order_id'] = Crypt::encrypt($order_id);
         $parsed_url['query'] = http_build_query($query);
 
         return self::unparseUrl($parsed_url);
@@ -165,7 +165,7 @@ class Paysera
         } else {
             $query = [];
         }
-        $query['site_id'] = $paysera_site_config->site_id;
+
         $parsed_url['query'] = http_build_query($query);
 
         return self::unparseUrl($parsed_url);
