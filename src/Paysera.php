@@ -95,11 +95,11 @@ class Paysera
      * @param Request $request
      * @return array
      */
-    public static function verifyPayment(Request $request, $paysera_site_config)
+    public static function verifyPayment($paysera_site_config)
     {
 
         $response = WebToPay::validateAndParseData(
-            $request->all(),
+            Request::all(),
             intval($paysera_site_config->projectid),
             $paysera_site_config->sign_password
         );
@@ -132,7 +132,7 @@ class Paysera
 */
     public static function getCancelUrl($paysera_site_config, $order_id)
     {
-        $parsed_url = parse_url(Request::root() . $paysera_site_config->cancel_path);
+        $parsed_url = parse_url(Request::root() . $paysera_site_config->cancel_path . '/' . $paysera_site_config->site_id);
         if (isset($parsed_url['query'])) {
             $query = parse_str($parsed_url['query']);
         } else {
@@ -145,7 +145,7 @@ class Paysera
     }
     public static function getAcceptUrl($paysera_site_config)
     {
-        $parsed_url = parse_url(Request::root() . $paysera_site_config->cancel_path);
+        $parsed_url = parse_url(Request::root() . $paysera_site_config->accept_path . '/' . $paysera_site_config->site_id);
         if (isset($parsed_url['query'])) {
             $query = parse_str($parsed_url['query']);
         } else {
@@ -159,7 +159,7 @@ class Paysera
 
     public static function getCallbackUrl($paysera_site_config)
     {
-        $parsed_url = parse_url(Request::root() . $paysera_site_config->cancel_path);
+        $parsed_url = parse_url(Request::root() . $paysera_site_config->callback_path . '/' . $paysera_site_config->site_id);
         if (isset($parsed_url['query'])) {
             $query = parse_str($parsed_url['query']);
         } else {
