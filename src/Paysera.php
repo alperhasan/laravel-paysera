@@ -75,7 +75,7 @@ class Paysera
             'sign_password' => $paysera_site_config->sign_password,
             'currency' => $paysera_site_config->currency,
             'country' => $paysera_site_config->country,
-            'test' => $paysera_site_config->test_mode,
+            'test' => $paysera_site_config->test_mode ? 1 : 0,
             'version' => '1.6',
 
             'orderid' => $order_id,
