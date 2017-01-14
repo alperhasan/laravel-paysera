@@ -38,7 +38,7 @@ class Paysera
         $result['country_title'] = $country_payment_methods_info->getTitle();
         $payment_methods_groups_all = $country_payment_methods_info->getGroups();
 
-        $payment_groups_names = explode(',', $paysera_site_config->payment_groups);
+        $payment_groups_names = explode(',', $paysera_site_config->only_payments);
 
         foreach ($payment_groups_names as $payment_groups_name) {
             $payment_methods_groups[$payment_groups_name] = $payment_methods_groups_all[$payment_groups_name];
