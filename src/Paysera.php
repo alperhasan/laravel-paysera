@@ -139,7 +139,7 @@ class Paysera
         } else {
             $query = [];
         }
-        $query['order_id'] = Crypt::encrypt($order_id);
+        $query['order_id'] = $order_id;
         $parsed_url['query'] = http_build_query($query);
 
         return self::unparseUrl($parsed_url);
@@ -153,7 +153,7 @@ class Paysera
         } else {
             $query = [];
         }
-        $query['order_id'] = Crypt::encrypt($order_id);
+        $query['order_id'] = $order_id;
         $parsed_url['query'] = http_build_query($query);
 
         return self::unparseUrl($parsed_url);
